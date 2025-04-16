@@ -30,9 +30,10 @@ router.route("/getuserbyId/:id").get(
     getuserbyid 
 )
 
-router.route("/getuser").post(
+router.route("/getuser").get(
     getuser
 )
+
 
 
 

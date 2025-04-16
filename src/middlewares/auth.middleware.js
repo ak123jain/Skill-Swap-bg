@@ -54,8 +54,10 @@ export const verifyjwt = async(req , _ , next) =>{
         if (!token1) {
             console.log("token is not found 💕💕💕 provided");
         }
+
         const decoded = jwt.verify(token1, process.env.ACCESS_TOKEN_SECRET);
         console.log("token is verified 😍😍😍😍😍");
+
 
         const user = await User.findById(decoded.id).select("-password -refreshtoken");
 

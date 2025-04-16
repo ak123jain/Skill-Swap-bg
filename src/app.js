@@ -22,10 +22,14 @@ app.use(cookieParser())
 import userRouter from "./routes/user.router.js";
 import sessionRouter from "./routes/session.router.js";
 import matchRouter from "./routes/Match.router.js";
+import twilloRouter from "./routes/twillo.router.js";
+import recordRouter from "./routes/Record.router.js";
 
 app.use("/user", userRouter)
 app.use("/session", sessionRouter)
 app.use("/match", matchRouter)
+app.use("/twillo",twilloRouter)
+app.use("/record", recordRouter)
 
 
 

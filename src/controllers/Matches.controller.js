@@ -11,6 +11,7 @@ export const getMatch = asynchandler(async(req , res) =>{
     const userId = req.user._id;
 
     const user = await User.findById(userId).select("-password");
+    
     if (!user) {
         throw new ApiError(404, "User not found");
     }
@@ -36,6 +37,14 @@ export const getMatch = asynchandler(async(req , res) =>{
         _id : { $ne : userId},
         canTeach : { $in : wantToLearn },
     })
+
+    console.log("matches" , matches);
+    console.log("match2" , match2);
+    console.log("match3" , match3);
+    
+    
+    
+    
 
     return res.status(200).json(new ApiResponse(200, {matches  , match2 , match3} , "Success"));
 
