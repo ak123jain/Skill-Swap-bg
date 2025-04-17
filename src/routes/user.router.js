@@ -1,6 +1,7 @@
 import { Router } from "express";
-import { getuser, getuserbyid, loggedinuser, Logoutuser, register, updateavatar, updatedetails } from "../controllers/user.controller.js";
+import { getalluser, getuser, getuserbyid, loggedinuser, Logoutuser, register, updateavatar, updatedetails } from "../controllers/user.controller.js";
 import { upload } from "../middlewares/multer.middleware.js";
+import { verifyjwt } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 
@@ -24,6 +25,7 @@ router.route("/updatedetails").patch(
 router.route("/updateavatar").patch(
     upload.single("image"),
      updateavatar
+
 )
 
 router.route("/getuserbyId/:id").get(
@@ -31,9 +33,13 @@ router.route("/getuserbyId/:id").get(
 )
 
 router.route("/getuser").get(
-    getuser
+      getuser
 )
 
+router.route("/getalluser").get(
+    verifyjwt,
+    getalluser
+)
 
 
 

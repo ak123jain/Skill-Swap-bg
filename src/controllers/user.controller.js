@@ -344,7 +344,7 @@ export const getuserbyid = asynchandler(async (req , res) =>{
 
 export const getuser = asynchandler(async (req , res) =>{
  
-    const user = await User.find({}).select("-password -refreshToken -username")
+    const user = await User.find({}).select("-password -refreshToken ")
 
     if (!user) {
         throw new ApiError(404, "User not found");
@@ -359,3 +359,26 @@ export const getuser = asynchandler(async (req , res) =>{
     )
 })
 
+
+export const getalluser = asynchandler(async (req , res) =>{
+
+    const id = req.user._id
+
+    const users = await User.findById(id).select("-password -refreshToken")
+
+    console.log("users" , users);
+    
+
+    if (!users) {
+      throw new ApiError(404, "User not found");
+    }
+
+     return res.status(200).json(
+        new ApiResponse(
+            200, 
+            users,
+            "User fetched successfully"
+        )
+    )
+
+})
