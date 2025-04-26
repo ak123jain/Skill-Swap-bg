@@ -28,10 +28,7 @@ const uploadOnCloudinary = async (localFilePath) => {
     } catch (error) {
         console.error("⚠️ Error during file upload:", error);
 
-        if (localFilePath) {
-            fs.unlinkSync(localFilePath); // Clean up the file if it exists
-            console.log("🧹 Local file deleted after failed upload.");
-        }
+         fs.unlinkSync(localFilePath); // Delete the local file after upload failure
 
         return null;
     }
