@@ -42,5 +42,10 @@ router.route("/getalluser").get(
 )
 
 
+router.route("/logout").post(
+    verifyjwt,
+    Logoutuser
+)
+
 
 export default router;
