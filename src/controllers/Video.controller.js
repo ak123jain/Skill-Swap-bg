@@ -6,14 +6,17 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { json } from "express";
 import { Video } from "../models/video.model.js";
- 
+import { Types } from "mongoose"; // Add this import
 
 
 export const recordvideo = asynchandler(async (req , res) =>{
 
-    const {  id } = req.params;
+    const {id}    = req.params;
 
-    console.log("req params" ,  id);
+    console.log("req parammmmms" ,  req.params);
+    
+
+    console.log("req parammmmms" ,  id);
     
 
     console.log("req body" , req.body);
@@ -31,6 +34,8 @@ export const recordvideo = asynchandler(async (req , res) =>{
     const result = await uploadOnCloudinary(video)
 
     console.log("result of video upload", result);
+
+      
 
     const videoo = new Video({
         sharedWith : id,
